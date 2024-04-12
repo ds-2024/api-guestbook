@@ -13,14 +13,14 @@ public class GuestbookDao {
 
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	// 삭제
-		public int guestbookDelete(GuestbookVo guestbookVo){
-			System.out.println("GuestbookDao.guestbookDelete()");
-			
-			int count = sqlSession.delete("guestbook.delete", guestbookVo);
-			return count;
-		}
+	public int guestbookDelete(GuestbookVo guestbookVo) {
+		System.out.println("GuestbookDao.guestbookDelete()");
+
+		int count = sqlSession.delete("guestbook.delete", guestbookVo);
+		return count;
+	}
 
 	// 글 저장 selectKey
 	public int insertSelectKey(GuestbookVo guestbookVo) {
@@ -37,8 +37,8 @@ public class GuestbookDao {
 		GuestbookVo guestbookVo = sqlSession.selectOne("guestbook.selectOne", no);
 		return guestbookVo;
 	}
-	
-	//리스트 가져오기
+
+	// 리스트 가져오기
 	public List<GuestbookVo> guestbookSelectList() {
 		System.out.println("GuestbookDao.guestbookSelectList()");
 

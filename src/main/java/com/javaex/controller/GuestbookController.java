@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.javaex.service.GuestbookService;
 import com.javaex.vo.GuestbookVo;
 
@@ -21,8 +19,32 @@ public class GuestbookController {
 	@Autowired
 	private GuestbookService guestbookService;
 	
+	
+	
+	//저장
+	//@ResponseBody -> @RestController
+	@PostMapping(value="/api/guests") //주소 같으니까 get post 구분.post는 저장개
+	public GuestbookVo add(@RequestBody GuestbookVo guestbookVo) {
+		System.out.println("GuestbookController.add()");
+		System.out.println(guestbookVo);
+		
+		GuestbookVo guestVo = guestbookService.exeAddandGuest(guestbookVo);
+		System.out.println(guestVo);
+		return guestVo;
+	}
+	//리스트
+	@GetMapping(value="/api/guests")//@GetMapping)RequestMethod.GET 안써줘도 되고 import해야함
+	public List<GuestbookVo> list() {
+		System.out.println("GuestbookController.list()");
+		
+		List<GuestbookVo> guestbookList =  guestbookService.exeGuestList();
+		
+		System.out.println(guestbookList);
+		
+		return guestbookList;
+	}
+	
 	//삭제
-	//@ResponseBody
 	@DeleteMapping(value="/api/guests/{no}")
 	public String remove(@RequestBody GuestbookVo guestbookVo,
 						 @PathVariable(value="no") int no) {
@@ -38,32 +60,7 @@ public class GuestbookController {
 		String result ="{\"count\": "+ count +"}";
 		System.out.println(result);
 		return result;
-	}
-	
-	//저장
-	//@ResponseBody -> @RestController
-	@PostMapping(value="/api/guests") //주소 같으니까 get post 구분.post는 저장개
-	public GuestbookVo add(@RequestBody GuestbookVo guestbookVo) {
-		System.out.println("GuestbookController.add()");
-		System.out.println(guestbookVo);
-		
-		GuestbookVo guestVo = guestbookService.exeAddandGuest(guestbookVo);
-		System.out.println(guestVo);
-		return guestVo;
-	}
-	//리스트
-	//@ResponseBody
-	@GetMapping(value="/api/guests")//@GetMapping)RequestMethod.GET 안써줘도 되고 import해야함
-	public List<GuestbookVo> list() {
-		System.out.println("GuestbookController.list()");
-		
-		List<GuestbookVo> guestbookList =  guestbookService.exeGuestList();
-		
-		System.out.println(guestbookList);
-		
-		return guestbookList;
-	}
-	
+		}
 	
 
 }
