@@ -3,7 +3,7 @@ name: Deploy GuestbookApp #워크플로우 이름
 on:
   push:
     branches:
-      - master #master 또는 프로젝트의 기본 브랜치명 깃허브에 push가 되면 작동확인
+      - master #master 또는 프로젝트의 기본 브랜치명 깃허브에 push가 되면 작동
 
 jobs:
   build-and-deploy:
