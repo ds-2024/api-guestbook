@@ -30,5 +30,22 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: docker push sophia1106/guestbook:latest
         
+ 
+  SSH:
+  	needs: build-and-deploy
+  	runs-on: ubuntu-latest
+  	steps:
+	 - uses: actions/checkout@v3
+     - name: ssh to ec2
+       uses: appleboy/ssh-action@master
+       with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo docker pull sophia1106/guestbook:latest
+            sudo docker stop guestbook || true
+            sudo docker rm guestbook || true
+            sudo docker run -d --name guestbook-p 9000:9000 sophia1106/guestbook:latest
         
   
