@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.javaex.service.GuestbookService;
 import com.javaex.vo.GuestbookVo;
 
-//@Controller git token 확인
+//@Controller git action확인
 @RestController// 선언 해줌으로써 각 기능마다 @ResponseBody 안해줘도 됨.
 public class GuestbookController {
 	
