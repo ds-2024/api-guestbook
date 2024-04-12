@@ -32,7 +32,7 @@ jobs:
         
  
   SSH:
-  	needs: build-and-deploy
+    needs: build-and-deploy
   	runs-on: ubuntu-latest
   	steps:
 	 - uses: actions/checkout@v3
