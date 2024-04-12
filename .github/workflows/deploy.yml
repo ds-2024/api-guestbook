@@ -35,9 +35,9 @@ jobs:
     needs: build-and-deploy
     runs-on: ubuntu-latest
   	steps:
-	 - uses: actions/checkout@v3
-     - name: ssh to ec2
-       uses: appleboy/ssh-action@master
+	  - uses: actions/checkout@v3
+      - name: ssh to ec2
+        uses: appleboy/ssh-action@master
        with:
          host: ${{ secrets.EC2_HOST }}
          username: ${{ secrets.EC2_USERNAME }}
